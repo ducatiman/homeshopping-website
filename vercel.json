@@ -8,6 +8,10 @@
   ],
   "routes": [
     {
+      "src": "/image_(.*).png",
+      "dest": "/image_$1.png"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
