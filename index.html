@@ -27,7 +27,8 @@
     li { margin-bottom: 6px; }
     table { border-collapse: collapse; width: 100%; margin: 12px 0; }
     th, td { border: 1px solid #ddd; padding: 8px; }
-    th { background: #f0f0f0; text-align: left; }
+    th { background: #f0f0f0; text-align: left; white-space: nowrap; }
+    td { word-wrap: break-word; }
     ol { margin-left: 18px; }
     .faq { background-color: #f6f9fd; padding: 18px; border-radius: 8px; margin: 20px 0; }
     .faq strong { display: block; margin-top: 12px; }
@@ -38,9 +39,9 @@
 <div class="page">
   <div class="image-gallery" id="gallery1">
     <div class="image-container">
-      <img class="gallery-img" src="./image_1.png" alt="청양식 닭갈비 밀키트 1" />
-      <img class="gallery-img" src="./image_2.png" alt="청양식 닭갈비 밀키트 2" />
-      <img class="gallery-img" src="./image_3.png" alt="청양식 닭갈비 밀키트 3" />
+      <img class="gallery-img" src="./images/image_1.png" alt="청양식 닭갈비 밀키트 1" />
+      <img class="gallery-img" src="./images/image_2.png" alt="청양식 닭갈비 밀키트 2" />
+      <img class="gallery-img" src="./images/image_3.png" alt="청양식 닭갈비 밀키트 3" />
     </div>ㅣ프롤이
  
     <button class="gallery-nav prev" onclick="changeSlide('gallery1', -1)">‹</button>
@@ -52,42 +53,50 @@
     </div>
   </div>
   <h1 class="product-title">청양식 닭갈비 밀키트</h1>
-  <div class="price">판매가: ₩10,000 (33% 할인)</div>
+  <div class="price">정상가 15,000원, <span style="color: #e8432c;">판매가 10,000원 (33%)할인</span></div>
 
   <div class="section-title">상품 특징</div>
   <ul>
-    <li>국내산 닭고기와 신선한 채소 중심의 닭갈비 밀키트</li>
-    <li>특제 양념 소스로 감칠맛 극대화</li>
-    <li>간편한 프라이팬 조리 방식</li>
-    <li>2-3인분 기준 알맞은 구성</li>
+    <li>국산 닭정육 53.20%와 국산 야채(양배추, 대파, 깻잎, 고구마), 그리고 국산 떡으로 구성된 닭갈비 밀키트</li>
+    <li>20년 경력 식품연구원의 노하우를 담아 닭갈비 전문점의 맛 구현</li>
+    <li>프라이팬에 간편하게 10분 내 조리 가능</li>
+    <li>2~3인이 즐길 수 있는 470g의 넉넉한 양</li>
   </ul>
 
   <div class="section-title">구성품 안내</div>
   <table>
-    <tr><th>구성품</th><td>닭갈비용 파우더, 닭갈비용 부재료, 기타 소스</td></tr>
+    <tr><th>구성품</th><td>양념된 닭정육, 닭갈비용 야채와 떡</td></tr>
     <tr><th>중량</th><td>총 470g (2-3인분)</td></tr>
-    <tr><th>포장</th><td>폴리에틸렌 내포장재 사용</td></tr>
+    <tr><th>포장</th><td>폴리에틸렌 내포장재 사용 <img src="./images/ic_paper.jpg" alt="종이" style="height: 45px; vertical-align: middle; margin: 0 2px;"> <img src="./images/ic_vinyl.jpg" alt="비닐류" style="height: 50px; vertical-align: middle; margin: 0 2px; margin-top: 3px;"></td></tr>
     <tr><th>보관방법</th><td>냉장 (0~10℃)</td></tr>
     <tr><th>유통기한</th><td>제조일로부터 7일 이내</td></tr>
   </table>
 
+  <div class="section-title">제품 정보</div>
+  <table>
+    <tr><th>식품유형</th><td>즉석조리식품</td></tr>
+    <tr><th>표시사항</th><td>닭정육 53.20%(닭: 국산), 양배추(국산), 대파(국산), 백설탕, 떡[쌀(국산), 정제소금(국내산), 옥배유], 고춧가루, 깻잎(국산), 고구마(국산), 복합조미식품1, 복합조미식품2, 옥수수전분, 정제소금, 식물성크림, L-글루탐산나트륨(향미증진제), 마늘분말, 양파분말, 카레분말, 생강분말, 흑후추분말</td></tr>
+    <tr><th>품목제조보고번호</th><td>202506831460</td></tr>
+    <tr><th>제조원</th><td>그로스피크에프앤씨(010-3957-0600) / 충남 천안시 서북구 천안대로 1223-24, 산학협력관 211~213호</td></tr>
+  </table>
+
   <div class="section-title">조리방법</div>
   <ol>
-    <li>팬을 달군 후 닭갈비 부재료를 넣고 볶습니다.</li>
-    <li>닭갈비용 파우더를 넣어 잘 섞어 조리합니다.</li>
-    <li>충분히 가열 후 접시에 담아 완성합니다.</li>
+    <li>프라이팬에 식용유를 두르고 가열합니다</li>
+    <li>모든 원료를 넣고 약 10분간 충분히 익을 때까지 조리합니다.</li>
+    <li>접시에 담아 완성합니다.</li>
   </ol>
+  <p><strong>*야채는 세척하여 조리하시기 바랍니다.</strong></p>
 
   <div class="section-title">배송 및 교환 안내</div>
   <ul>
-    <li>오전 11시 이전 주문 시 당일 발송합니다.</li>
     <li>신선식품 특성상 단순 변심에 의한 교환/환불이 불가합니다.</li>
     <li>상품에 이상이 있을 경우, 수령 후 24시간 이내 연락 바랍니다.</li>
   </ul>
 
   <div class="faq">
     <strong>Q: 밀키트 수령 후 바로 조리해야 하나요?</strong>
-    <p>A: 냉장보관 기준 7일 이내 조리 권장, 냉동 보관 시 최대 1달까지 보관 가능합니다.</p>
+    <p>A: 수령 후 반드시 냉장보관하시고 소비기한 내 섭취하세요</p>
 
     <strong>Q: 알레르기 성분은 무엇인가요?</strong>
     <p>A: 쇠고기, 대두, 우유, 밀 등이 포함되어 있습니다.</p>
@@ -97,9 +106,9 @@
 <div class="page">
   <div class="image-gallery" id="gallery2">
     <div class="image-container">
-      <img class="gallery-img" src="./image_1.png" alt="청양식 한우육개장 밀키트 1" />
-      <img class="gallery-img" src="./image_2.png" alt="청양식 한우육개장 밀키트 2" />
-      <img class="gallery-img" src="./image_3.png" alt="청양식 한우육개장 밀키트 3" />
+      <img class="gallery-img" src="./images/image_1.png" alt="청양식 한우육개장 밀키트 1" />
+      <img class="gallery-img" src="./images/image_2.png" alt="청양식 한우육개장 밀키트 2" />
+      <img class="gallery-img" src="./images/image_3.png" alt="청양식 한우육개장 밀키트 3" />
     </div>
     <button class="gallery-nav prev" onclick="changeSlide('gallery2', -1)">‹</button>
     <button class="gallery-nav next" onclick="changeSlide('gallery2', 1)">›</button>
@@ -110,54 +119,62 @@
     </div>
   </div>
   <h1 class="product-title">청양식 한우육개장 밀키트</h1>
-  <div class="price">판매가: ₩10,000 (33% 할인)</div>
+  <div class="price">정상가 15,000원, <span style="color: #e8432c;">판매가 10,000원 (33%)할인</span></div>
 
   <div class="section-title">상품 특징</div>
   <ul>
-    <li>청양 지역 한우와 신선한 채소로 만든 얼큰한 육개장</li>
-    <li>끓이기만 하면 완성되는 간편 조리법</li>
-    <li>15분 내 조리 가능, 2인분 기준</li>
-    <li>즉석 조리식품으로 손쉽게 즐길 수 있음</li>
+    <li>한우육수 44.20%, 한우정육 6.63%, 육개장다대기 5.53%</li>
+    <li>충남 청양군의 한우정육과 대파, 무, 느타리버섯, 고사리 그리고 한우육수를 사용해 만든 얼큰한 육개장</li>
+    <li>20년 경력 식품연구원의 노하우를 담아 육개장 전문점의 맛 구현</li>
+    <li>냄비에 간편하게 15분 내 조리 가능</li>
+    <li>2~3인이 즐길 수 있는 905g의 넉넉한 양</li>
   </ul>
 
   <div class="section-title">구성품 안내</div>
   <table>
-    <tr><th>구성품</th><td>육개장 소스, 한우 정육, 육개장용 야채</td></tr>
+    <tr><th>구성품</th><td>육개장육수, 한우육수, 한우정육, 육개장용 야채</td></tr>
     <tr><th>중량</th><td>총 905g (2인분)</td></tr>
-    <tr><th>포장</th><td>폴리에틸렌 내포장재 사용</td></tr>
+    <tr><th>포장</th><td>폴리에틸렌 내포장재 사용 <img src="./images/ic_paper.jpg" alt="종이" style="height: 45px; vertical-align: middle; margin: 0 2px;"> <img src="./images/ic_vinyl.jpg" alt="비닐류" style="height: 50px; vertical-align: middle; margin: 0 2px; margin-top: 3px;"></td></tr>
     <tr><th>보관방법</th><td>냉장 (0~10℃)</td></tr>
     <tr><th>유통기한</th><td>제조일로부터 7일 이내</td></tr>
   </table>
 
   <div class="section-title">조리방법</div>
   <ol>
-    <li>모든 구성품을 냄비에 넣고 충분히 가열 조리합니다.</li>
-    <li>야채는 세척 후 사용합니다.</li>
-    <li>충분히 가열 후 바로 섭취합니다.</li>
+    <li>냄비에 모든 원료를 넣고 약 15분간 충분히 끓여 조리합니다.</li>
+    <li>그릇에 담아 완성합니다.</li>
   </ol>
+  <p><strong>*야채는 세척하여 조리하시기 바랍니다.</strong></p>
+
+  <div class="section-title">제품 정보</div>
+  <table>
+    <tr><th>식품유형</th><td>즉석조리식품</td></tr>
+    <tr><th>표시사항</th><td>인생한탕 한우육수 44.20%(소잡뼈: 국산), 대파(국산), 정제수, 한우정육 6.63%(한우: 국산), 육개장다대기 5.53% [식용우지(국산), 고춧가루, 정제우지, 양파(국산),말토덱스트린], 무(국산), 느타리버섯(국산), 고사리(국산), 복합조미식품, 혼합간장, L-글루탐산나트륨(향미증진제), 정제소금, 소스1, 흑후추분말, 마늘분말, 소스2, 생강분말</td></tr>
+    <tr><th>품목제조보고번호</th><td>202506831459</td></tr>
+    <tr><th>제조원</th><td>그로스피크에프앤씨(010-3957-0600) / 충남 천안시 서북구 천안대로 1223-24, 산학협력관 211~213호</td></tr>
+  </table>
 
   <div class="section-title">배송 및 교환 안내</div>
   <ul>
-    <li>오전 11시 이전 주문 시 당일 발송합니다.</li>
     <li>신선식품 특성상 단순 변심에 의한 교환/환불이 불가합니다.</li>
     <li>상품에 이상이 있을 경우, 수령 후 24시간 이내 연락 바랍니다.</li>
   </ul>
 
   <div class="faq">
-    <strong>Q: 유통기한은 어떻게 되나요?</strong>
-    <p>A: 제조일로부터 7일 이내이며 냉장 보관 기준입니다.</p>
+    <strong>Q: 밀키트 수령 후 바로 조리해야 하나요?</strong>
+    <p>A: 수령 후 반드시 냉장보관하시고 소비기한 내 섭취하세요</p>
 
     <strong>Q: 알레르기 성분은 무엇인가요?</strong>
-    <p>A: 대두, 밀, 소고기, 닭고기, 조개류, 우유가 포함되어 있습니다.</p>
+    <p>A: 대두, 밀, 닭고기, 조개류(가리비), 우유 등이 포함</p>
   </div>
 </div>
 
 <div class="page">
   <div class="image-gallery" id="gallery3">
     <div class="image-container">
-      <img class="gallery-img" src="./image_1.png" alt="표고와사비장 1" />
-      <img class="gallery-img" src="./image_2.png" alt="표고와사비장 2" />
-      <img class="gallery-img" src="./image_3.png" alt="표고와사비장 3" />
+      <img class="gallery-img" src="./images/image_1.png" alt="표고와사비장 1" />
+      <img class="gallery-img" src="./images/image_2.png" alt="표고와사비장 2" />
+      <img class="gallery-img" src="./images/image_3.png" alt="표고와사비장 3" />
     </div>
     <button class="gallery-nav prev" onclick="changeSlide('gallery3', -1)">‹</button>
     <button class="gallery-nav next" onclick="changeSlide('gallery3', 1)">›</button>
@@ -168,21 +185,20 @@
     </div>
   </div>
   <h1 class="product-title">표고와사비장</h1>
-  <div class="price">판매가: ₩10,000 (33% 할인)</div>
+  <div class="price">정상가 15,000원, <span style="color: #e8432c;">판매가 10,000원 (33%)할인</span></div>
 
   <div class="section-title">상품 특징</div>
   <ul>
-    <li>청양 지역 유기농 표고버섯 100% 사용</li>
-    <li>프리미엄 와사비 함유로 풍미 증대</li>
-    <li>밥반찬, 술안주 등 다양한 활용 가능</li>
-    <li>유통기한 6개월로 장기 보관 가능</li>
+    <li>충남 청양군의 표고버섯 60%와 생와사비 5% 사용</li>
+    <li>고추냉이 함량 80%의 생와사비를 넉넉하게 사용하여 풍미 증대</li>
+    <li>술안주 중 육류, 회와 특히 잘 어울리며 밥 반찬 등 다양하게 활용가능</li>
+    <li>500g의 넉넉한 양으로 즐길 수 있음</li>
   </ul>
 
   <div class="section-title">구성품 안내</div>
   <table>
-    <tr><th>구성품</th><td>표고버섯, 불간장, 생와사비 등</td></tr>
     <tr><th>중량</th><td>총 500g</td></tr>
-    <tr><th>포장</th><td>폴리에틸렌 내포장재 사용</td></tr>
+    <tr><th>포장</th><td>폴리에틸렌 내포장재 사용 <img src="./images/ic_pet.jpg" alt="PET" style="height: 45px; vertical-align: middle; margin: 0 2px;"></td></tr>
     <tr><th>보관방법</th><td>냉장 (0~10℃)</td></tr>
     <tr><th>유통기한</th><td>제조일로부터 6개월</td></tr>
   </table>
@@ -190,12 +206,19 @@
   <div class="section-title">조리 및 활용법</div>
   <ul>
     <li>각종 육류, 회에 곁들여서 드시면 좋습니다.</li>
-    <li>밥반찬이나 고기 소스, 술안주로 다양하게 활용 가능합니다.</li>
+    <li>밥반찬이나 술안주로 다양하게 활용 가능합니다.</li>
   </ul>
+
+  <div class="section-title">제품 정보</div>
+  <table>
+    <tr><th>식품유형</th><td>향신료조제품</td></tr>
+    <tr><th>표시사항</th><td>표고버섯 60%(국산), 혼합간장[아미노산원액(탈지대두:인도산), 양조간장원액(탈지대두:인도산), 천일염(호주산), 백설탕, 주정], 생와사비 5%[고추냉이 80%(중국산), 서양고추냉이, 유당, D-솔비톨, 식물성유지], 소스1, 소스2, 소스3, 5'-리보뉴클레오티드이나트륨(향미증진제)</td></tr>
+    <tr><th>품목제조보고번호</th><td>2025068314511</td></tr>
+    <tr><th>제조원</th><td>그로스피크에프앤씨(010-3957-0600) / 충남 천안시 서북구 천안대로 1223-24, 산학협력관 211~213호</td></tr>
+  </table>
 
   <div class="section-title">배송 및 교환 안내</div>
   <ul>
-    <li>오전 11시 이전 주문 시 당일 발송합니다.</li>
     <li>신선식품 특성상 단순 변심에 의한 교환/환불이 불가합니다.</li>
     <li>상품에 이상이 있을 경우, 수령 후 24시간 이내 연락 바랍니다.</li>
   </ul>
