@@ -3,429 +3,319 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>홈쇼핑 밀키트 상세페이지 모음 - v2</title>
+  <title>청양식 밀키트 전문몰 - 프리미엄 밀키트</title>
   <style>
-    body { font-family: 'Apple SD Gothic Neo', Arial, sans-serif; margin: 0; background: #f9f9f9; color: #333; }
-    .page { max-width: 760px; background: white; border-radius: 10px; box-shadow: 0 0 12px #eee; margin: 30px auto; padding: 24px; }
-    .product-title { font-weight: 700; font-size: 2rem; margin-bottom: 12px; color: #e8432c; }
-    .price { font-weight: 700; font-size: 1.5rem; margin-bottom: 12px; }
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
     
-    /* 이미지 갤러리 스타일 */
-    .image-gallery { position: relative; width: 100%; height: 350px; overflow: hidden; border-radius: 8px; margin-bottom: 18px; background: #efefef; }
-    .image-container { display: flex; width: 100%; height: 100%; transition: transform 0.5s ease-in-out; }
-    .gallery-img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; }
-    .gallery-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 50%; font-size: 18px; }
-    .gallery-nav:hover { background: rgba(0,0,0,0.7); }
-    .gallery-nav.prev { left: 10px; }
-    .gallery-nav.next { right: 10px; }
-    .gallery-dots { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
-    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: background 0.3s; }
-    .dot.active { background: white; }
+    body { 
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #ffffff;
+      color: #000000;
+      line-height: 1.5;
+      font-size: 14px;
+    }
     
-    .section-title { font-weight: 600; font-size: 1.2rem; margin: 20px 0 12px; border-bottom: 2px solid #eee; padding-bottom: 6px; }
-    ul { padding-left: 18px; margin: 12px 0; }
-    li { margin-bottom: 6px; }
-    table { border-collapse: collapse; width: 100%; margin: 12px 0; }
-    th, td { border: 1px solid #ddd; padding: 8px; }
-    th { background: #f0f0f0; text-align: left; white-space: nowrap; }
-    td { word-wrap: break-word; }
-    ol { margin-left: 18px; }
-    .faq { background-color: #f6f9fd; padding: 18px; border-radius: 8px; margin: 20px 0; }
-    .faq strong { display: block; margin-top: 12px; }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    .header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 40px 0;
+      text-align: center;
+    }
+    
+    .header h1 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #000000;
+      letter-spacing: -1px;
+    }
+    
+    .header p {
+      font-size: 16px;
+      color: #666666;
+      font-weight: 400;
+    }
+    
+    .products-section {
+      padding: 80px 0;
+    }
+    
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #000000;
+      margin-bottom: 40px;
+      text-align: center;
+      letter-spacing: -0.5px;
+    }
+    
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-bottom: 80px;
+    }
+    
+    .product-card {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .product-card:hover {
+      border-color: #000000;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    
+    .product-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      background: #f8f8f8;
+    }
+    
+    .product-info {
+      padding: 24px;
+    }
+    
+    .product-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #000000;
+      letter-spacing: -0.3px;
+    }
+    
+    .product-subtitle {
+      font-size: 14px;
+      color: #666666;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    
+    .price-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .original-price {
+      font-size: 14px;
+      color: #999999;
+      text-decoration: line-through;
+    }
+    
+    .sale-price {
+      font-size: 20px;
+      font-weight: 600;
+      color: #000000;
+      letter-spacing: -0.5px;
+    }
+    
+    .discount-badge {
+      background: #000000;
+      color: #ffffff;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    
+    .product-features {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .product-features li {
+      font-size: 13px;
+      color: #666666;
+      margin-bottom: 4px;
+      position: relative;
+      padding-left: 12px;
+    }
+    
+    .product-features li:before {
+      content: "•";
+      color: #000000;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    
+    .cta-section {
+      background: #f8f8f8;
+      padding: 60px 0;
+      text-align: center;
+    }
+    
+    .cta-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #000000;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    
+    .cta-description {
+      font-size: 16px;
+      color: #666666;
+      margin-bottom: 32px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      white-space: nowrap;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background: #000000;
+      color: #ffffff;
+      padding: 16px 32px;
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s ease;
+      letter-spacing: -0.3px;
+    }
+    
+    .cta-button:hover {
+      background: #333333;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+      
+      .header h1 {
+        font-size: 24px;
+      }
+      
+      .products-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      
+      .product-image {
+        height: 240px;
+      }
+      
+      .product-info {
+        padding: 20px;
+      }
+      
+      .section-title {
+        font-size: 20px;
+        margin-bottom: 32px;
+      }
+      
+      .cta-description {
+        white-space: normal;
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
-
-<div class="page">
-  <div class="image-gallery" id="gallery1">
-    <div class="image-container">
-      <img class="gallery-img" src="./images/image_1.png" alt="청양식 닭갈비 밀키트 1" />
-      <img class="gallery-img" src="./images/image_2.png" alt="청양식 닭갈비 밀키트 2" />
-      <img class="gallery-img" src="./images/image_3.png" alt="청양식 닭갈비 밀키트 3" />
-    </div>ㅣ프롤이
- 
-    <button class="gallery-nav prev" onclick="changeSlide('gallery1', -1)">‹</button>
-    <button class="gallery-nav next" onclick="changeSlide('gallery1', 1)">›</button>
-    <div class="gallery-dots">
-      <span class="dot active" onclick="currentSlide('gallery1', 0)"></span>
-      <span class="dot" onclick="currentSlide('gallery1', 1)"></span>
-      <span class="dot" onclick="currentSlide('gallery1', 2)"></span>
+  <div class="header">
+    <div class="container">
+      <h1>청양식 밀키트 전문몰</h1>
+      <p>국산 재료로 만든 프리미엄 밀키트를 만나보세요</p>
     </div>
   </div>
-  <h1 class="product-title">청양식 닭갈비 밀키트</h1>
-  <div class="price">정상가 15,000원, <span style="color: #e8432c;">판매가 10,000원 (33%)할인</span></div>
 
-  <div class="section-title">상품 특징</div>
-  <ul>
-    <li>국산 닭정육 53.20%와 국산 야채(양배추, 대파, 깻잎, 고구마), 그리고 국산 떡으로 구성된 닭갈비 밀키트</li>
-    <li>20년 경력 식품연구원의 노하우를 담아 닭갈비 전문점의 맛 구현</li>
-    <li>프라이팬에 간편하게 10분 내 조리 가능</li>
-    <li>2~3인이 즐길 수 있는 470g의 넉넉한 양</li>
-  </ul>
+  <div class="products-section">
+    <div class="container">
+      <h2 class="section-title">프리미엄 밀키트</h2>
+      
+      <div class="products-grid">
+        <!-- 청양식 닭갈비 밀키트 -->
+        <a href="product1.html" class="product-card">
+          <img src="./images/image_1.png" alt="청양식 닭갈비 밀키트" class="product-image">
+          <div class="product-info">
+            <h3 class="product-title">청양식 닭갈비 밀키트</h3>
+            <p class="product-subtitle">국산 닭정육 53.20%와 신선한 야채로 만든 프리미엄 밀키트</p>
+            <div class="price-section">
+              <span class="original-price">15,000원</span>
+              <span class="sale-price">10,000원</span>
+              <span class="discount-badge">33% 할인</span>
+            </div>
+            <ul class="product-features">
+              <li>국산 닭정육 53.20%와 국산 야채로 구성</li>
+              <li>20년 경력 식품연구원의 노하우</li>
+              <li>프라이팬에 간편하게 10분 내 조리</li>
+              <li>2~3인이 즐길 수 있는 470g의 넉넉한 양</li>
+            </ul>
+          </div>
+        </a>
 
-  <div class="section-title">구성품 안내</div>
-  <table>
-    <tr><th>구성품</th><td>양념된 닭정육, 닭갈비용 야채와 떡</td></tr>
-    <tr><th>중량</th><td>총 470g (2-3인분)</td></tr>
-    <tr><th>포장</th><td>폴리에틸렌 내포장재 사용 <img src="./images/ic_paper.jpg" alt="종이" style="height: 45px; vertical-align: middle; margin: 0 2px;"> <img src="./images/ic_vinyl.jpg" alt="비닐류" style="height: 50px; vertical-align: middle; margin: 0 2px; margin-top: 3px;"></td></tr>
-    <tr><th>보관방법</th><td>냉장 (0~10℃)</td></tr>
-    <tr><th>유통기한</th><td>제조일로부터 7일 이내</td></tr>
-  </table>
+        <!-- 청양식 한우육개장 밀키트 -->
+        <a href="product2.html" class="product-card">
+          <img src="./images/image_2.png" alt="청양식 한우육개장 밀키트" class="product-image">
+          <div class="product-info">
+            <h3 class="product-title">청양식 한우육개장 밀키트</h3>
+            <p class="product-subtitle">한우육수 44.20%와 프리미엄 한우정육으로 만든 얼큰한 육개장</p>
+            <div class="price-section">
+              <span class="original-price">15,000원</span>
+              <span class="sale-price">10,000원</span>
+              <span class="discount-badge">33% 할인</span>
+            </div>
+            <ul class="product-features">
+              <li>한우육수 44.20%, 한우정육 6.63%</li>
+              <li>충남 청양군의 한우정육과 신선한 야채</li>
+              <li>냄비에 간편하게 15분 내 조리</li>
+              <li>2~3인이 즐길 수 있는 905g의 넉넉한 양</li>
+            </ul>
+          </div>
+        </a>
 
-  <div class="section-title">제품 정보</div>
-  <table>
-    <tr><th>식품유형</th><td>즉석조리식품</td></tr>
-    <tr><th>표시사항</th><td>닭정육 53.20%(닭: 국산), 양배추(국산), 대파(국산), 백설탕, 떡[쌀(국산), 정제소금(국내산), 옥배유], 고춧가루, 깻잎(국산), 고구마(국산), 복합조미식품1, 복합조미식품2, 옥수수전분, 정제소금, 식물성크림, L-글루탐산나트륨(향미증진제), 마늘분말, 양파분말, 카레분말, 생강분말, 흑후추분말</td></tr>
-    <tr><th>품목제조보고번호</th><td>202506831460</td></tr>
-    <tr><th>제조원</th><td>그로스피크에프앤씨(010-3957-0600) / 충남 천안시 서북구 천안대로 1223-24, 산학협력관 211~213호</td></tr>
-  </table>
-
-  <div class="section-title">조리방법</div>
-  <ol>
-    <li>프라이팬에 식용유를 두르고 가열합니다</li>
-    <li>모든 원료를 넣고 약 10분간 충분히 익을 때까지 조리합니다.</li>
-    <li>접시에 담아 완성합니다.</li>
-  </ol>
-  <p><strong>*야채는 세척하여 조리하시기 바랍니다.</strong></p>
-
-  <div class="section-title">배송 및 교환 안내</div>
-  <ul>
-    <li>신선식품 특성상 단순 변심에 의한 교환/환불이 불가합니다.</li>
-    <li>상품에 이상이 있을 경우, 수령 후 24시간 이내 연락 바랍니다.</li>
-  </ul>
-
-  <div class="faq">
-    <strong>Q: 밀키트 수령 후 바로 조리해야 하나요?</strong>
-    <p>A: 수령 후 반드시 냉장보관하시고 소비기한 내 섭취하세요</p>
-
-    <strong>Q: 알레르기 성분은 무엇인가요?</strong>
-    <p>A: 쇠고기, 대두, 우유, 밀 등이 포함되어 있습니다.</p>
-  </div>
-</div>
-
-<div class="page">
-  <div class="image-gallery" id="gallery2">
-    <div class="image-container">
-      <img class="gallery-img" src="./images/image_1.png" alt="청양식 한우육개장 밀키트 1" />
-      <img class="gallery-img" src="./images/image_2.png" alt="청양식 한우육개장 밀키트 2" />
-      <img class="gallery-img" src="./images/image_3.png" alt="청양식 한우육개장 밀키트 3" />
-    </div>
-    <button class="gallery-nav prev" onclick="changeSlide('gallery2', -1)">‹</button>
-    <button class="gallery-nav next" onclick="changeSlide('gallery2', 1)">›</button>
-    <div class="gallery-dots">
-      <span class="dot active" onclick="currentSlide('gallery2', 0)"></span>
-      <span class="dot" onclick="currentSlide('gallery2', 1)"></span>
-      <span class="dot" onclick="currentSlide('gallery2', 2)"></span>
-    </div>
-  </div>
-  <h1 class="product-title">청양식 한우육개장 밀키트</h1>
-  <div class="price">정상가 15,000원, <span style="color: #e8432c;">판매가 10,000원 (33%)할인</span></div>
-
-  <div class="section-title">상품 특징</div>
-  <ul>
-    <li>한우육수 44.20%, 한우정육 6.63%, 육개장다대기 5.53%</li>
-    <li>충남 청양군의 한우정육과 대파, 무, 느타리버섯, 고사리 그리고 한우육수를 사용해 만든 얼큰한 육개장</li>
-    <li>20년 경력 식품연구원의 노하우를 담아 육개장 전문점의 맛 구현</li>
-    <li>냄비에 간편하게 15분 내 조리 가능</li>
-    <li>2~3인이 즐길 수 있는 905g의 넉넉한 양</li>
-  </ul>
-
-  <div class="section-title">구성품 안내</div>
-  <table>
-    <tr><th>구성품</th><td>육개장육수, 한우육수, 한우정육, 육개장용 야채</td></tr>
-    <tr><th>중량</th><td>총 905g (2인분)</td></tr>
-    <tr><th>포장</th><td>폴리에틸렌 내포장재 사용 <img src="./images/ic_paper.jpg" alt="종이" style="height: 45px; vertical-align: middle; margin: 0 2px;"> <img src="./images/ic_vinyl.jpg" alt="비닐류" style="height: 50px; vertical-align: middle; margin: 0 2px; margin-top: 3px;"></td></tr>
-    <tr><th>보관방법</th><td>냉장 (0~10℃)</td></tr>
-    <tr><th>유통기한</th><td>제조일로부터 7일 이내</td></tr>
-  </table>
-
-  <div class="section-title">조리방법</div>
-  <ol>
-    <li>냄비에 모든 원료를 넣고 약 15분간 충분히 끓여 조리합니다.</li>
-    <li>그릇에 담아 완성합니다.</li>
-  </ol>
-  <p><strong>*야채는 세척하여 조리하시기 바랍니다.</strong></p>
-
-  <div class="section-title">제품 정보</div>
-  <table>
-    <tr><th>식품유형</th><td>즉석조리식품</td></tr>
-    <tr><th>표시사항</th><td>인생한탕 한우육수 44.20%(소잡뼈: 국산), 대파(국산), 정제수, 한우정육 6.63%(한우: 국산), 육개장다대기 5.53% [식용우지(국산), 고춧가루, 정제우지, 양파(국산),말토덱스트린], 무(국산), 느타리버섯(국산), 고사리(국산), 복합조미식품, 혼합간장, L-글루탐산나트륨(향미증진제), 정제소금, 소스1, 흑후추분말, 마늘분말, 소스2, 생강분말</td></tr>
-    <tr><th>품목제조보고번호</th><td>202506831459</td></tr>
-    <tr><th>제조원</th><td>그로스피크에프앤씨(010-3957-0600) / 충남 천안시 서북구 천안대로 1223-24, 산학협력관 211~213호</td></tr>
-  </table>
-
-  <div class="section-title">배송 및 교환 안내</div>
-  <ul>
-    <li>신선식품 특성상 단순 변심에 의한 교환/환불이 불가합니다.</li>
-    <li>상품에 이상이 있을 경우, 수령 후 24시간 이내 연락 바랍니다.</li>
-  </ul>
-
-  <div class="faq">
-    <strong>Q: 밀키트 수령 후 바로 조리해야 하나요?</strong>
-    <p>A: 수령 후 반드시 냉장보관하시고 소비기한 내 섭취하세요</p>
-
-    <strong>Q: 알레르기 성분은 무엇인가요?</strong>
-    <p>A: 대두, 밀, 닭고기, 조개류(가리비), 우유 등이 포함</p>
-  </div>
-</div>
-
-<div class="page">
-  <div class="image-gallery" id="gallery3">
-    <div class="image-container">
-      <img class="gallery-img" src="./images/image_1.png" alt="표고와사비장 1" />
-      <img class="gallery-img" src="./images/image_2.png" alt="표고와사비장 2" />
-      <img class="gallery-img" src="./images/image_3.png" alt="표고와사비장 3" />
-    </div>
-    <button class="gallery-nav prev" onclick="changeSlide('gallery3', -1)">‹</button>
-    <button class="gallery-nav next" onclick="changeSlide('gallery3', 1)">›</button>
-    <div class="gallery-dots">
-      <span class="dot active" onclick="currentSlide('gallery3', 0)"></span>
-      <span class="dot" onclick="currentSlide('gallery3', 1)"></span>
-      <span class="dot" onclick="currentSlide('gallery3', 2)"></span>
+        <!-- 표고와사비장 -->
+        <a href="product3.html" class="product-card">
+          <img src="./images/image_3.png" alt="표고와사비장" class="product-image">
+          <div class="product-info">
+            <h3 class="product-title">표고와사비장</h3>
+            <p class="product-subtitle">충남 청양군 표고버섯 60%와 생와사비 5%로 만든 프리미엄 장류</p>
+            <div class="price-section">
+              <span class="original-price">15,000원</span>
+              <span class="sale-price">10,000원</span>
+              <span class="discount-badge">33% 할인</span>
+            </div>
+            <ul class="product-features">
+              <li>충남 청양군의 표고버섯 60%와 생와사비 5%</li>
+              <li>고추냉이 함량 80%의 생와사비 사용</li>
+              <li>육류, 회와 특히 잘 어울리는 풍미</li>
+              <li>500g의 넉넉한 양으로 다양하게 활용</li>
+            </ul>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
-  <h1 class="product-title">표고와사비장</h1>
-  <div class="price">정상가 15,000원, <span style="color: #e8432c;">판매가 10,000원 (33%)할인</span></div>
 
-  <div class="section-title">상품 특징</div>
-  <ul>
-    <li>충남 청양군의 표고버섯 60%와 생와사비 5% 사용</li>
-    <li>고추냉이 함량 80%의 생와사비를 넉넉하게 사용하여 풍미 증대</li>
-    <li>술안주 중 육류, 회와 특히 잘 어울리며 밥 반찬 등 다양하게 활용가능</li>
-    <li>500g의 넉넉한 양으로 즐길 수 있음</li>
-  </ul>
-
-  <div class="section-title">구성품 안내</div>
-  <table>
-    <tr><th>중량</th><td>총 500g</td></tr>
-    <tr><th>포장</th><td>폴리에틸렌 내포장재 사용 <img src="./images/ic_pet.jpg" alt="PET" style="height: 45px; vertical-align: middle; margin: 0 2px;"></td></tr>
-    <tr><th>보관방법</th><td>냉장 (0~10℃)</td></tr>
-    <tr><th>유통기한</th><td>제조일로부터 6개월</td></tr>
-  </table>
-
-  <div class="section-title">조리 및 활용법</div>
-  <ul>
-    <li>각종 육류, 회에 곁들여서 드시면 좋습니다.</li>
-    <li>밥반찬이나 술안주로 다양하게 활용 가능합니다.</li>
-  </ul>
-
-  <div class="section-title">제품 정보</div>
-  <table>
-    <tr><th>식품유형</th><td>향신료조제품</td></tr>
-    <tr><th>표시사항</th><td>표고버섯 60%(국산), 혼합간장[아미노산원액(탈지대두:인도산), 양조간장원액(탈지대두:인도산), 천일염(호주산), 백설탕, 주정], 생와사비 5%[고추냉이 80%(중국산), 서양고추냉이, 유당, D-솔비톨, 식물성유지], 소스1, 소스2, 소스3, 5'-리보뉴클레오티드이나트륨(향미증진제)</td></tr>
-    <tr><th>품목제조보고번호</th><td>2025068314511</td></tr>
-    <tr><th>제조원</th><td>그로스피크에프앤씨(010-3957-0600) / 충남 천안시 서북구 천안대로 1223-24, 산학협력관 211~213호</td></tr>
-  </table>
-
-  <div class="section-title">배송 및 교환 안내</div>
-  <ul>
-    <li>신선식품 특성상 단순 변심에 의한 교환/환불이 불가합니다.</li>
-    <li>상품에 이상이 있을 경우, 수령 후 24시간 이내 연락 바랍니다.</li>
-  </ul>
-
-  <div class="faq">
-    <strong>Q: 알레르기 성분은 무엇인가요?</strong>
-    <p>A: 대두, 밀, 소고기, 닭고기, 조개류, 우유가 포함되어 있습니다.</p>
-
-    <strong>Q: 유통기한이 어떻게 되나요?</strong>
-    <p>A: 제조일로부터 6개월 이내이며 냉장 보관 기준입니다.</p>
+  <div class="cta-section">
+    <div class="container">
+      <h2 class="cta-title">프리미엄 밀키트의 특별함을 경험해보세요</h2>
+      <p class="cta-description">국산 재료와 20년 경력의 노하우로 만든 청양식 밀키트로 집에서도 전문점 맛을 즐기실 수 있습니다.</p>
+      <a href="#products" class="cta-button">상품 둘러보기</a>
+    </div>
   </div>
-</div>
-
-<script>
-// 각 갤러리의 상태를 저장
-let galleryStates = {};
-
-// 갤러리 초기화 함수
-function initializeGallery(galleryId) {
-  const gallery = document.getElementById(galleryId);
-  const container = gallery.querySelector('.image-container');
-  const originalImages = container.querySelectorAll('.gallery-img');
-  
-  // 원본 이미지들을 배열로 저장
-  const imageSources = Array.from(originalImages).map(img => ({
-    src: img.src,
-    alt: img.alt
-  }));
-  
-  // 갤러리 상태 저장
-  galleryStates[galleryId] = {
-    currentIndex: 0,
-    totalImages: imageSources.length,
-    isAnimating: false,
-    imageSources: imageSources,
-    isInitialized: false
-  };
-  
-  // 무한 스크롤을 위해 이미지 복제
-  setupInfiniteScroll(galleryId, imageSources);
-}
-
-// 무한 스크롤 설정
-function setupInfiniteScroll(galleryId, imageSources) {
-  const gallery = document.getElementById(galleryId);
-  const container = gallery.querySelector('.image-container');
-  const state = galleryStates[galleryId];
-  
-  // 컨테이너 초기화
-  container.innerHTML = '';
-  
-  // 이미지 개수에 따라 동적으로 복제
-  const totalImages = imageSources.length;
-  
-  // 앞에 마지막 이미지 추가 (이전 버튼용)
-  const lastImg = createImageElement(imageSources[totalImages - 1]);
-  container.appendChild(lastImg);
-  
-  // 원본 이미지들 추가
-  imageSources.forEach(imgData => {
-    const img = createImageElement(imgData);
-    container.appendChild(img);
-  });
-  
-  // 뒤에 첫 번째 이미지 추가 (다음 버튼용)
-  const firstImg = createImageElement(imageSources[0]);
-  container.appendChild(firstImg);
-  
-  // 컨테이너 너비 조정
-  const totalWidth = (totalImages + 2) * 100; // +2는 복제된 이미지들
-  container.style.width = `${totalWidth}%`;
-  
-  // 각 이미지 너비 조정
-  const imageWidth = 100 / (totalImages + 2);
-  container.querySelectorAll('.gallery-img').forEach(img => {
-    img.style.width = `${imageWidth}%`;
-  });
-  
-  // 갤러리 상태 업데이트
-  state.containerWidth = totalWidth;
-  state.imageWidth = imageWidth;
-  state.isInitialized = true;
-  
-  // 초기 위치 설정 (애니메이션 없이)
-  container.style.transition = 'none';
-  container.style.transform = `translateX(-${imageWidth}%)`;
-  
-  // 다음 프레임에서 애니메이션 활성화
-  requestAnimationFrame(() => {
-    container.style.transition = 'transform 0.5s ease-in-out';
-  });
-}
-
-// 이미지 엘리먼트 생성
-function createImageElement(imgData) {
-  const img = document.createElement('img');
-  img.className = 'gallery-img';
-  img.src = imgData.src;
-  img.alt = imgData.alt;
-  return img;
-}
-
-// 슬라이드 변경 함수
-function changeSlide(galleryId, direction) {
-  const state = galleryStates[galleryId];
-  if (!state || state.isAnimating || !state.isInitialized) return;
-  
-  const gallery = document.getElementById(galleryId);
-  const container = gallery.querySelector('.image-container');
-  const dots = gallery.querySelectorAll('.dot');
-  
-  state.isAnimating = true;
-  
-  // 현재 인덱스 업데이트
-  state.currentIndex += direction;
-  
-  // 이동할 위치 계산
-  const newTranslateX = -(state.currentIndex + 1) * state.imageWidth;
-  container.style.transform = `translateX(${newTranslateX}%)`;
-  
-  // 애니메이션 완료 후 위치 조정
-  setTimeout(() => {
-    // 마지막 이미지에서 다음으로 이동한 경우
-    if (state.currentIndex >= state.totalImages) {
-      state.currentIndex = 0;
-      container.style.transition = 'none';
-      container.style.transform = `translateX(-${state.imageWidth}%)`;
-      setTimeout(() => {
-        container.style.transition = 'transform 0.5s ease-in-out';
-        state.isAnimating = false;
-      }, 10);
-    }
-    // 첫 번째 이미지에서 이전으로 이동한 경우
-    else if (state.currentIndex < 0) {
-      state.currentIndex = state.totalImages - 1;
-      container.style.transition = 'none';
-      container.style.transform = `translateX(-${state.totalImages * state.imageWidth}%)`;
-      setTimeout(() => {
-        container.style.transition = 'transform 0.5s ease-in-out';
-        state.isAnimating = false;
-      }, 10);
-    } else {
-      state.isAnimating = false;
-    }
-    
-    // 도트 업데이트
-    dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === state.currentIndex);
-    });
-  }, 500);
-}
-
-// 특정 슬라이드로 이동
-function currentSlide(galleryId, slideIndex) {
-  const state = galleryStates[galleryId];
-  if (!state || state.isAnimating || !state.isInitialized) return;
-  
-  const gallery = document.getElementById(galleryId);
-  const container = gallery.querySelector('.image-container');
-  const dots = gallery.querySelectorAll('.dot');
-  
-  state.isAnimating = true;
-  state.currentIndex = slideIndex;
-  
-  // 슬라이드 이동
-  const translateX = -(slideIndex + 1) * state.imageWidth;
-  container.style.transform = `translateX(${translateX}%)`;
-  
-  // 도트 업데이트
-  dots.forEach((dot, index) => {
-    dot.classList.toggle('active', index === slideIndex);
-  });
-  
-  setTimeout(() => {
-    state.isAnimating = false;
-  }, 500);
-}
-
-// 페이지 로드 시 모든 갤러리 초기화
-document.addEventListener('DOMContentLoaded', function() {
-  // 약간의 지연을 두고 초기화하여 DOM이 완전히 로드된 후 실행
-  setTimeout(() => {
-    ['gallery1', 'gallery2', 'gallery3'].forEach(galleryId => {
-      initializeGallery(galleryId);
-    });
-  }, 100);
-});
-
-// 자동 슬라이드 기능 (선택사항)
-function autoSlide(galleryId) {
-  setInterval(() => {
-    const state = galleryStates[galleryId];
-    if (state && !state.isAnimating && state.isInitialized) {
-      changeSlide(galleryId, 1);
-    }
-  }, 5000); // 5초마다 자동 슬라이드
-}
-
-// 자동 슬라이드 시작 (원하는 경우 주석 해제)
-// document.addEventListener('DOMContentLoaded', function() {
-//   setTimeout(() => {
-//     autoSlide('gallery1');
-//     autoSlide('gallery2');
-//     autoSlide('gallery3');
-//   }, 1000);
-// });
-</script>
-
 </body>
 </html>
