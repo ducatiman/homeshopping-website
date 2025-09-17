@@ -314,8 +314,25 @@
     <div class="container">
       <h2 class="cta-title">프리미엄 밀키트의 특별함을 경험해보세요</h2>
       <p class="cta-description">국산 재료와 20년 경력의 노하우로 만든 청양식 밀키트로 집에서도 전문점 맛을 즐기실 수 있습니다.</p>
-      <a href="#products" class="cta-button">상품 둘러보기</a>
+      <a href="#" class="cta-button" onclick="goToRandomProduct(event)">상품 둘러보기</a>
     </div>
   </div>
+
+<script>
+// 랜덤 상품으로 이동하는 함수
+function goToRandomProduct(event) {
+  event.preventDefault(); // 기본 링크 동작 방지
+  
+  // 3개 상품 페이지 배열
+  const products = ['product1.html', 'product2.html', 'product3.html'];
+  
+  // 랜덤 인덱스 생성 (0, 1, 2 중 하나)
+  const randomIndex = Math.floor(Math.random() * products.length);
+  
+  // 랜덤으로 선택된 상품 페이지로 이동
+  window.location.href = products[randomIndex];
+}
+</script>
+
 </body>
 </html>
