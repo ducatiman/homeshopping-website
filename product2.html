@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>청양식 한우육개장 밀키트 - 청양식 밀키트 전문몰</title>
+  <title>청양식 밀키트 전문몰</title>
   <style>
     * { 
       margin: 0; 
@@ -345,6 +345,7 @@
       border-collapse: collapse;
       margin: 20px 0;
       background: #ffffff;
+      border: 1px solid #e5e5e5;
     }
     
     .info-table th {
@@ -450,6 +451,60 @@
     
     .back-link:hover {
       color: #000000;
+    }
+    
+    /* 커스텀 모달 스타일 */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+    
+    .modal-content {
+      background-color: #ffffff;
+      margin: 15% auto;
+      padding: 30px;
+      border: none;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    
+    .modal-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #000000;
+      margin-bottom: 16px;
+    }
+    
+    .modal-message {
+      font-size: 14px;
+      color: #333333;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    
+    .modal-button {
+      background: #000000;
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s ease;
+    }
+    
+    .modal-button:hover {
+      background: #333333;
     }
     
     @media (max-width: 768px) {
@@ -619,6 +674,15 @@
     </div>
   </div>
 
+  <!-- 커스텀 모달 -->
+  <div id="customModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-title">청양식 밀키트 전문몰</div>
+      <div class="modal-message" id="modalMessage"></div>
+      <button class="modal-button" onclick="closeModal()">확인</button>
+    </div>
+  </div>
+
 <script>
 // 각 갤러리의 상태를 저장
 let galleryStates = {};
@@ -656,18 +720,29 @@ function changeQuantity(productId, change) {
   }
 }
 
+// 모달 열기
+function showModal(message) {
+  document.getElementById('modalMessage').textContent = message;
+  document.getElementById('customModal').style.display = 'block';
+}
+
+// 모달 닫기
+function closeModal() {
+  document.getElementById('customModal').style.display = 'none';
+}
+
 // 장바구니 추가 기능
 function addToCart(productId) {
   const quantity = document.getElementById(`quantity${productId.slice(-1)}`).value;
   const productName = productNames[productId] || productId;
-  alert(`${productName} ${quantity}개가 장바구니에 추가되었습니다!`);
+  showModal(`${productName} ${quantity}개가 장바구니에 추가되었습니다!`);
 }
 
 // 바로구매 기능
 function buyNow(productId) {
   const quantity = document.getElementById(`quantity${productId.slice(-1)}`).value;
   const productName = productNames[productId] || productId;
-  alert(`${productName} ${quantity}개를 바로구매합니다!`);
+  showModal(`${productName} ${quantity}개를 바로구매합니다!`);
 }
 
 // 갤러리 초기화 함수
