@@ -561,9 +561,13 @@
         <div class="product-images">
           <div class="image-gallery" id="gallery3">
             <div class="image-container">
-              <img class="gallery-img" src="./images/image_1.png" alt="표고와사비장 1" />
-              <img class="gallery-img" src="./images/image_2.png" alt="표고와사비장 2" />
-              <img class="gallery-img" src="./images/image_3.png" alt="표고와사비장 3" />
+              <img class="gallery-img" src="./images/img_prod3_1.jpeg" alt="표고와사비장 1" />
+              <img class="gallery-img" src="./images/img_prod3_2.jpeg" alt="표고와사비장 2" />
+              <img class="gallery-img" src="./images/img_prod3_3.jpeg" alt="표고와사비장 3" />
+              <img class="gallery-img" src="./images/img_prod3_4.jpeg" alt="표고와사비장 4" />
+              <img class="gallery-img" src="./images/img_prod3_5.jpeg" alt="표고와사비장 5" />
+              <img class="gallery-img" src="./images/img_prod3_6.jpeg" alt="표고와사비장 6" />
+              <img class="gallery-img" src="./images/gif_prod3.gif" alt="표고와사비장 활용 과정" />
             </div>
             <button class="gallery-nav prev" onclick="changeSlide('gallery3', -1)">‹</button>
             <button class="gallery-nav next" onclick="changeSlide('gallery3', 1)">›</button>
@@ -571,6 +575,10 @@
               <span class="dot active" onclick="currentSlide('gallery3', 0)"></span>
               <span class="dot" onclick="currentSlide('gallery3', 1)"></span>
               <span class="dot" onclick="currentSlide('gallery3', 2)"></span>
+              <span class="dot" onclick="currentSlide('gallery3', 3)"></span>
+              <span class="dot" onclick="currentSlide('gallery3', 4)"></span>
+              <span class="dot" onclick="currentSlide('gallery3', 5)"></span>
+              <span class="dot" onclick="currentSlide('gallery3', 6)"></span>
             </div>
           </div>
         </div>
@@ -758,7 +766,9 @@ function initializeGallery(galleryId) {
     totalImages: imageSources.length,
     isAnimating: false,
     imageSources: imageSources,
-    isInitialized: false
+    isInitialized: false,
+    autoSlideInterval: null,
+    autoSlideDelay: 3000 // 3초마다 자동 슬라이드
   };
   
   // 무한 스크롤을 위해 이미지 복제
@@ -806,7 +816,7 @@ function setupInfiniteScroll(galleryId, imageSources) {
   state.imageWidth = imageWidth;
   state.isInitialized = true;
   
-  // 초기 위치 설정 (애니메이션 없이)
+  // 초기 위치 설정 (첫 번째 원본 이미지가 보이도록)
   container.style.transition = 'none';
   container.style.transform = `translateX(-${imageWidth}%)`;
   
@@ -814,6 +824,9 @@ function setupInfiniteScroll(galleryId, imageSources) {
   requestAnimationFrame(() => {
     container.style.transition = 'transform 0.5s ease-in-out';
   });
+  
+  // 자동 슬라이드 시작
+  startAutoSlide(galleryId);
 }
 
 // 이미지 엘리먼트 생성
@@ -833,6 +846,9 @@ function changeSlide(galleryId, direction) {
   const gallery = document.getElementById(galleryId);
   const container = gallery.querySelector('.image-container');
   const dots = gallery.querySelectorAll('.dot');
+  
+  // 사용자 조작 시 자동 슬라이드 일시 중지
+  stopAutoSlide(galleryId);
   
   state.isAnimating = true;
   
@@ -872,6 +888,11 @@ function changeSlide(galleryId, direction) {
     dots.forEach((dot, index) => {
       dot.classList.toggle('active', index === state.currentIndex);
     });
+    
+    // 애니메이션 완료 후 자동 슬라이드 재시작
+    setTimeout(() => {
+      restartAutoSlide(galleryId);
+    }, 1000); // 1초 후 자동 슬라이드 재시작
   }, 500);
 }
 
@@ -883,6 +904,9 @@ function currentSlide(galleryId, slideIndex) {
   const gallery = document.getElementById(galleryId);
   const container = gallery.querySelector('.image-container');
   const dots = gallery.querySelectorAll('.dot');
+  
+  // 사용자 조작 시 자동 슬라이드 일시 중지
+  stopAutoSlide(galleryId);
   
   state.isAnimating = true;
   state.currentIndex = slideIndex;
@@ -898,15 +922,42 @@ function currentSlide(galleryId, slideIndex) {
   
   setTimeout(() => {
     state.isAnimating = false;
+    // 애니메이션 완료 후 자동 슬라이드 재시작
+    setTimeout(() => {
+      restartAutoSlide(galleryId);
+    }, 1000); // 1초 후 자동 슬라이드 재시작
   }, 500);
+}
+
+// 자동 슬라이드 시작
+function startAutoSlide(galleryId) {
+  const state = galleryStates[galleryId];
+  if (!state || state.autoSlideInterval) return;
+  
+  state.autoSlideInterval = setInterval(() => {
+    changeSlide(galleryId, 1);
+  }, state.autoSlideDelay);
+}
+
+// 자동 슬라이드 중지
+function stopAutoSlide(galleryId) {
+  const state = galleryStates[galleryId];
+  if (!state || !state.autoSlideInterval) return;
+  
+  clearInterval(state.autoSlideInterval);
+  state.autoSlideInterval = null;
+}
+
+// 자동 슬라이드 재시작
+function restartAutoSlide(galleryId) {
+  stopAutoSlide(galleryId);
+  startAutoSlide(galleryId);
 }
 
 // 페이지 로드 시 모든 갤러리 초기화
 document.addEventListener('DOMContentLoaded', function() {
-  // 약간의 지연을 두고 초기화하여 DOM이 완전히 로드된 후 실행
-  setTimeout(() => {
-    initializeGallery('gallery3');
-  }, 100);
+  // 즉시 초기화하여 스크롤 효과 방지
+  initializeGallery('gallery3');
 });
 </script>
 
