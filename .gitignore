@@ -43,9 +43,11 @@ images_backup.zip
 *.xlsm
 
 # 비디오 파일 (GitHub 파일 크기 제한으로 인해 제외)
-videos/
-*.mp4
-*.webm
+# videos/ 폴더는 Git LFS로 관리 (원본)
+videos/*.mp4
+videos/*.webm
+# public/videos는 Vercel 배포용 (압축된 파일)
+# public/videos/*.mp4는 추적됨
 
 # 환경 변수 파일
 .env
