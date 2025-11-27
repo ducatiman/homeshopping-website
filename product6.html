@@ -94,6 +94,11 @@
       flex-shrink: 0;
     }
     
+    /* GIF 애니메이션 제어를 위한 스타일 */
+    .gallery-img[src*="gif_prod1.gif"] {
+      transition: opacity 0.3s ease;
+    }
+    
     .gallery-nav {
       position: absolute;
       top: 50%;
@@ -550,35 +555,31 @@
   <div class="container">
     <a href="index.html" class="back-link">← 상품 목록으로 돌아가기</a>
     
-    <!-- 표고와사비장 -->
+    <!-- 청양식 두부전골 밀키트 -->
     <div class="product-card">
       <div class="product-header">
-        <h1 class="product-title">표고와사비장</h1>
-        <p class="product-subtitle">충남 청양군 표고버섯 60%와 생와사비 5%로 만든 프리미엄 장류</p>
+        <h1 class="product-title">청양식 두부전골 밀키트</h1>
+        <p class="product-subtitle">부드러운 두부와 다양한 버섯으로 만든 전골 밀키트</p>
       </div>
       
       <div class="product-content">
         <div class="product-images">
-          <div class="image-gallery" id="gallery3">
+          <div class="image-gallery" id="gallery6">
             <div class="image-container">
-              <img class="gallery-img" src="./images/img_prod3_1.jpeg" alt="표고와사비장 1" />
-              <img class="gallery-img" src="./images/img_prod3_2.jpeg" alt="표고와사비장 2" />
-              <img class="gallery-img" src="./images/img_prod3_3.jpeg" alt="표고와사비장 3" />
-              <img class="gallery-img" src="./images/img_prod3_4.jpeg" alt="표고와사비장 4" />
-              <img class="gallery-img" src="./images/img_prod3_5.jpeg" alt="표고와사비장 5" />
-              <img class="gallery-img" src="./images/img_prod3_6.jpeg" alt="표고와사비장 6" />
-              <img class="gallery-img" src="./images/gif_prod3.gif" alt="표고와사비장 활용 과정" />
+              <div class="gallery-img" style="background: #f8f8f8; display: flex; align-items: center; justify-content: center; color: #999; font-size: 16px;">이미지 준비중</div>
+              <div class="gallery-img" style="background: #f8f8f8; display: flex; align-items: center; justify-content: center; color: #999; font-size: 16px;">이미지 준비중</div>
+              <div class="gallery-img" style="background: #f8f8f8; display: flex; align-items: center; justify-content: center; color: #999; font-size: 16px;">이미지 준비중</div>
+              <div class="gallery-img" style="background: #f8f8f8; display: flex; align-items: center; justify-content: center; color: #999; font-size: 16px;">이미지 준비중</div>
+              <div class="gallery-img" style="background: #f8f8f8; display: flex; align-items: center; justify-content: center; color: #999; font-size: 16px;">이미지 준비중</div>
             </div>
-            <button class="gallery-nav prev" onclick="changeSlide('gallery3', -1)">‹</button>
-            <button class="gallery-nav next" onclick="changeSlide('gallery3', 1)">›</button>
+            <button class="gallery-nav prev" onclick="changeSlide('gallery6', -1)">‹</button>
+            <button class="gallery-nav next" onclick="changeSlide('gallery6', 1)">›</button>
             <div class="gallery-dots">
-              <span class="dot active" onclick="currentSlide('gallery3', 0)"></span>
-              <span class="dot" onclick="currentSlide('gallery3', 1)"></span>
-              <span class="dot" onclick="currentSlide('gallery3', 2)"></span>
-              <span class="dot" onclick="currentSlide('gallery3', 3)"></span>
-              <span class="dot" onclick="currentSlide('gallery3', 4)"></span>
-              <span class="dot" onclick="currentSlide('gallery3', 5)"></span>
-              <span class="dot" onclick="currentSlide('gallery3', 6)"></span>
+              <span class="dot active" onclick="currentSlide('gallery6', 0)"></span>
+              <span class="dot" onclick="currentSlide('gallery6', 1)"></span>
+              <span class="dot" onclick="currentSlide('gallery6', 2)"></span>
+              <span class="dot" onclick="currentSlide('gallery6', 3)"></span>
+              <span class="dot" onclick="currentSlide('gallery6', 4)"></span>
             </div>
           </div>
         </div>
@@ -594,14 +595,14 @@
             <div class="quantity-selector">
               <span class="quantity-label">수량</span>
               <div class="quantity-controls">
-                <button class="quantity-btn" onclick="changeQuantity('product3', -1)">-</button>
-                <input type="number" class="quantity-input" id="quantity3" value="1" min="1" max="10">
-                <button class="quantity-btn" onclick="changeQuantity('product3', 1)">+</button>
+                <button class="quantity-btn" onclick="changeQuantity('product6', -1)">-</button>
+                <input type="number" class="quantity-input" id="quantity6" value="1" min="1" max="10">
+                <button class="quantity-btn" onclick="changeQuantity('product6', 1)">+</button>
               </div>
             </div>
             <div class="purchase-buttons">
-              <button class="btn btn-cart" onclick="addToCart('product3')">장바구니</button>
-              <button class="btn btn-buy" onclick="buyNow('product3')">바로구매</button>
+              <button class="btn btn-cart" onclick="addToCart('product6')">장바구니</button>
+              <button class="btn btn-buy" onclick="buyNow('product6')">바로구매</button>
             </div>
           </div>
         </div>
@@ -609,50 +610,52 @@
 
       <div class="product-details">
         <div class="tabs">
-          <button class="tab active" onclick="showTab('product3', 'features')">상품특징</button>
-          <button class="tab" onclick="showTab('product3', 'info')">상품정보</button>
-          <button class="tab" onclick="showTab('product3', 'usage')">활용법</button>
-          <button class="tab" onclick="showTab('product3', 'delivery')">배송안내</button>
-          <button class="tab" onclick="showTab('product3', 'faq')">Q&A</button>
+          <button class="tab active" onclick="showTab('product6', 'features')">상품특징</button>
+          <button class="tab" onclick="showTab('product6', 'info')">상품정보</button>
+          <button class="tab" onclick="showTab('product6', 'cooking')">조리방법</button>
+          <button class="tab" onclick="showTab('product6', 'delivery')">배송안내</button>
+          <button class="tab" onclick="showTab('product6', 'faq')">Q&A</button>
         </div>
         
-        <div id="product3-features" class="tab-content active">
+        <div id="product6-features" class="tab-content active">
           <div class="section-title">상품 특징</div>
           <ul class="feature-list">
-            <li>충남 청양군의 표고버섯 60%와 생와사비 5% 사용</li>
-            <li>고추냉이 함량 80%의 생와사비를 넉넉하게 사용하여 풍미 증대</li>
-            <li>술안주 중 육류, 회와 특히 잘 어울리며 밥 반찬 등 다양하게 활용가능</li>
-            <li>500g의 넉넉한 양으로 즐길 수 있음</li>
+            <li>부드러운 두부와 다양한 버섯</li>
+            <li>국산 재료로 만든 프리미엄 밀키트</li>
+            <li>간편하게 조리 가능</li>
+            <li>신선한 재료로 구성</li>
           </ul>
 
           <div class="section-title">구성품 안내</div>
           <table class="info-table">
-            <tr><th>중량</th><td>총 500g</td></tr>
-            <tr><th>포장</th><td>PET 용기 사용</td></tr>
-            <tr><th>보관방법</th><td>냉장 (0~10℃)</td></tr>
-            <tr><th>유통기한</th><td>제조일로부터 6개월</td></tr>
+            <tr><th>포장량</th><td>1000g</td></tr>
+            <tr><th>보관방법</th><td>냉장보관 (0~10℃)</td></tr>
+            <tr><th>소비기한</th><td>제조일로부터 14일</td></tr>
           </table>
         </div>
         
-        <div id="product3-info" class="tab-content">
+        <div id="product6-info" class="tab-content">
           <div class="section-title">제품 정보</div>
           <table class="info-table">
-            <tr><th>식품유형</th><td>향신료조제품</td></tr>
-            <tr><th>표시사항</th><td>표고버섯 60%(국산), 혼합간장[아미노산원액(탈지대두:인도산), 양조간장원액(탈지대두:인도산), 천일염(호주산), 백설탕, 주정], 생와사비 5%[고추냉이 80%(중국산), 서양고추냉이, 유당, D-솔비톨, 식물성유지], 소스1, 소스2, 소스3, 5'-리보뉴클레오티드이나트륨(향미증진제)</td></tr>
-            <tr><th>품목제조보고번호</th><td>2025068314511</td></tr>
+            <tr><th>식품유형</th><td>즉석조리식품</td></tr>
+            <tr><th>표시사항</th><td>육수소스[정제수,발효식초{주정,사과농축액(사과:국산),발효영양원,합성향료(사과에센스)], 백설탕, 조미액젓{까나리액젓(까나리:국산), 천일염, L-글루탐산나트륨(향미증진제)], 두부 30%[(대두:국산), 조제해수염화마그네슘,현미유,올리브유], 표고버섯(국내산), 새송이버섯(국내산), 느타리버섯(국내산), 대파(국내산)</td></tr>
+            <tr><th>알레르기</th><td>쇠고기, 대두, 우유, 밀, 새우, 조개류(굴,홍합 포함)</td></tr>
             <tr><th>제조원</th><td>그로스피크에프앤씨(010-3957-0600) / 충남 천안시 서북구 천안대로 1223-24, 산학협력관 211~213호</td></tr>
           </table>
         </div>
         
-        <div id="product3-usage" class="tab-content">
-          <div class="section-title">조리 및 활용법</div>
-          <ul class="feature-list">
-            <li>각종 육류, 회에 곁들여서 드시면 좋습니다.</li>
-            <li>밥반찬이나 술안주로 다양하게 활용 가능합니다.</li>
-          </ul>
+        <div id="product6-cooking" class="tab-content">
+          <div class="section-title">조리방법</div>
+          <ol class="cooking-steps">
+            <li>냄비에 모든 구성품을 넣고 종이컵 분량의 물 2컵을 넣습니다</li>
+            <li>충분히 가열조리하여 섭취하시면 됩니다.</li>
+          </ol>
+          <div class="faq-section">
+            <p><strong>*야채는 세척하여 조리하시기 바랍니다.</strong></p>
+          </div>
         </div>
 
-        <div id="product3-delivery" class="tab-content">
+        <div id="product6-delivery" class="tab-content">
           <div class="section-title">배송 및 교환 안내</div>
           <ul class="feature-list">
             <li>신선식품 특성상 단순 변심에 의한 교환/환불이 불가합니다.</li>
@@ -660,16 +663,16 @@
           </ul>
         </div>
         
-        <div id="product3-faq" class="tab-content">
+        <div id="product6-faq" class="tab-content">
           <div class="section-title">자주 묻는 질문</div>
           <div class="faq-section">
             <div class="faq-item">
-              <div class="faq-question">Q: 알레르기 성분은 무엇인가요?</div>
-              <div class="faq-answer">A: 대두, 밀, 소고기, 닭고기, 조개류, 우유가 포함되어 있습니다.</div>
+              <div class="faq-question">Q: 밀키트 수령 후 바로 조리해야 하나요?</div>
+              <div class="faq-answer">A: 수령 후 반드시 냉장보관하시고 소비기한 내 섭취하세요</div>
             </div>
             <div class="faq-item">
-              <div class="faq-question">Q: 유통기한이 어떻게 되나요?</div>
-              <div class="faq-answer">A: 제조일로부터 6개월 이내이며 냉장 보관 기준입니다.</div>
+              <div class="faq-question">Q: 알레르기 성분은 무엇인가요?</div>
+              <div class="faq-answer">A: 쇠고기, 대두, 우유, 밀, 새우, 조개류(굴,홍합 포함) 등이 포함되어 있습니다.</div>
             </div>
           </div>
         </div>
@@ -694,7 +697,8 @@ let galleryStates = {};
 const productNames = {
   'product1': '청양식 닭갈비 밀키트',
   'product2': '청양식 한우육개장 밀키트', 
-  'product3': '표고와사비장'
+  'product3': '표고와사비장',
+  'product6': '청양식 두부전골 밀키트'
 };
 
 // 탭 기능
@@ -954,10 +958,13 @@ function restartAutoSlide(galleryId) {
   startAutoSlide(galleryId);
 }
 
+
+
+
 // 페이지 로드 시 모든 갤러리 초기화
 document.addEventListener('DOMContentLoaded', function() {
   // 즉시 초기화하여 스크롤 효과 방지
-    initializeGallery('gallery3');
+    initializeGallery('gallery6');
 });
 </script>
 
