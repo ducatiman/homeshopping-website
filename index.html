@@ -13,7 +13,7 @@
     
     body { 
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #ffffff;
+      background: #fefdfb;
       color: #000000;
       line-height: 1.5;
       font-size: 14px;
@@ -28,17 +28,34 @@
     }
     
     .header {
-      background: #ffffff;
+      background: #fcfbf9;
       border-bottom: 1px solid #e5e5e5;
       padding: 40px 0;
       text-align: center;
     }
     
+    .header-logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    
+    .header-logo-img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      display: block;
+    }
+    
     .header h1 {
       font-size: 32px;
       font-weight: 600;
-      margin-bottom: 8px;
-      color: #000000;
+      margin: 0;
+      color: #4caf50;
       letter-spacing: -1px;
     }
     
@@ -63,14 +80,26 @@
     
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 40px;
       margin-bottom: 40px; /* 동영상과의 간격 조정 */
     }
     
+    @media (max-width: 1200px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
     .product-card {
       background: #ffffff;
-      border: 1px solid #e5e5e5;
+      border: 1px solid #e0ede1;
       overflow: hidden;
       transition: all 0.3s ease;
       cursor: pointer;
@@ -79,9 +108,9 @@
     }
     
     .product-card:hover {
-      border-color: #000000;
+      border-color: #4caf50;
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
     }
     
     .product-image {
@@ -131,11 +160,12 @@
     }
     
     .discount-badge {
-      background: #000000;
+      background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
       color: #ffffff;
       padding: 4px 8px;
       font-size: 12px;
       font-weight: 500;
+      border-radius: 4px;
     }
     
     .product-features {
@@ -203,14 +233,15 @@
     .video-wrapper {
       position: relative;
       width: 100%;
-      background: #ffffff;
-      border: 1px solid #e5e5e5;
+      background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 50%, #f5faf5 100%);
+      border: 1px solid #d0e0d0;
       overflow: hidden;
       transition: all 0.3s ease;
       display: flex;
       flex-direction: column;
       min-height: 500px; /* 최소 높이 설정 - JavaScript로 동적 조정됨 */
       /* 상품 카드와 동일한 스타일 - 높이는 JavaScript로 동적 설정 */
+      box-shadow: 0 2px 8px rgba(76, 175, 80, 0.1);
     }
     
     .video-wrapper:hover {
@@ -223,17 +254,18 @@
       position: relative;
       width: 100%;
       height: 100%; /* 상품 카드 전체 높이에 맞춤 */
-      background: transparent; /* 유튜브 스타일 완전 투명 배경 */
+      background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 50%, #f5faf5 100%);
       overflow: hidden;
       /* 보더에 딱 맞추기 위해 flex 제거 */
     }
     
-    .video-wrapper video {
+    .video-wrapper iframe {
       width: 100%; /* 보더에 딱 맞추기 위해 전체 너비 사용 */
       height: 100%; /* 컨테이너 높이에 맞춤 */
-      object-fit: cover; /* 비율 유지하면서 컨테이너를 꽉 채움 */
-      object-position: center center; /* 중앙 정렬 */
-      background: transparent; /* 투명 배경 */
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: none;
     }
     
     /* LIVE ON AIR 배지 */
@@ -439,6 +471,16 @@
         font-size: 24px;
       }
       
+      .header-logo-container {
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .header-logo-img {
+        width: 40px;
+        height: 40px;
+      }
+      
       .products-grid {
         grid-template-columns: 1fr;
         gap: 24px;
@@ -473,10 +515,9 @@
         min-height: auto; /* 모바일에서는 자동 높이 */
       }
       
-      .video-wrapper video {
+      .video-wrapper iframe {
         width: 100% !important;
         height: 100% !important;
-        object-fit: cover !important; /* 보더에 딱 맞추기 */
       }
       
       .video-controls {
@@ -518,7 +559,10 @@
 <body>
   <div class="header">
     <div class="container">
-      <h1>청양식 밀키트 전문몰</h1>
+      <div class="header-logo-container">
+        <img src="./images/ic_farm.gif" alt="정산농협" class="header-logo-img">
+        <h1>청양식 밀키트 전문몰</h1>
+      </div>
       <p>국산 재료로 만든 프리미엄 밀키트를 만나보세요</p>
     </div>
   </div>
@@ -531,24 +575,17 @@
         <!-- 동영상 - 첫 번째로 배치 -->
         <div class="video-wrapper">
           <div class="video-container-inner">
-            <video id="mainVideo" autoplay muted loop playsinline>
-              <source src="/videos/main-video.mp4" type="video/mp4">
-              <source src="/videos/main-video.webm" type="video/webm">
-              브라우저가 동영상 태그를 지원하지 않습니다.
-            </video>
+            <iframe 
+              id="youtubePlayer"
+              src="https://www.youtube.com/embed/wXMg-hYSyyk?controls=1&modestbranding=1&rel=0&mute=1&loop=1&playlist=wXMg-hYSyyk"
+              title="그로스피크 밀키트 홍보영상"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
             <!-- LIVE ON AIR 배지 -->
             <div class="video-live-badge">LIVE</div>
-            <!-- 하단 컨트롤 바 -->
-            <div class="video-controls">
-              <button class="video-control-play" id="playPauseButton" aria-label="재생/일시정지"></button>
-              <div class="video-control-progress" id="progressBar">
-                <div class="video-control-progress-bar" id="progressBarFill"></div>
-                <div class="video-control-progress-handle" id="progressHandle"></div>
-              </div>
-              <div class="video-control-time">
-                <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-              </div>
-            </div>
           </div>
         </div>
         
@@ -614,7 +651,7 @@
 
         <!-- 청양식 한우불고기 밀키트 -->
         <a href="product4.html" class="product-card">
-          <div class="product-image" style="background: #f8f8f8; display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px;">이미지 준비중</div>
+          <img src="./images/img_prod4_1.jpg" alt="청양식 한우불고기 밀키트" class="product-image">
           <div class="product-info">
             <h3 class="product-title">청양식 한우불고기 밀키트</h3>
             <p class="product-subtitle">프리미엄 한우정육과 신선한 야채로 만든 불고기 밀키트</p>
@@ -634,7 +671,7 @@
 
         <!-- 청양식 된장찌개 밀키트 -->
         <a href="product5.html" class="product-card">
-          <div class="product-image" style="background: #f8f8f8; display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px;">이미지 준비중</div>
+          <img src="./images/img_prod5_1.jpg" alt="청양식 된장찌개 밀키트" class="product-image">
           <div class="product-info">
             <h3 class="product-title">청양식 된장찌개 밀키트</h3>
             <p class="product-subtitle">구수한 된장과 신선한 야채로 만든 된장찌개 밀키트</p>
@@ -654,7 +691,7 @@
 
         <!-- 청양식 두부전골 밀키트 -->
         <a href="product6.html" class="product-card">
-          <div class="product-image" style="background: #f8f8f8; display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px;">이미지 준비중</div>
+          <img src="./images/img_prod6_1.jpeg" alt="청양식 두부전골 밀키트" class="product-image">
           <div class="product-info">
             <h3 class="product-title">청양식 두부전골 밀키트</h3>
             <p class="product-subtitle">부드러운 두부와 다양한 버섯으로 만든 전골 밀키트</p>
@@ -684,23 +721,16 @@
   </div>
 
 <script>
-// 동영상 자동 재생 설정
+// 유튜브 동영상 높이 조정
 document.addEventListener('DOMContentLoaded', function() {
-
-  const video = document.getElementById('mainVideo');
-  const playPauseButton = document.getElementById('playPauseButton');
-  const progressBar = document.getElementById('progressBar');
-  const progressBarFill = document.getElementById('progressBarFill');
-  const progressHandle = document.getElementById('progressHandle');
-  const currentTimeDisplay = document.getElementById('currentTime');
-  const durationDisplay = document.getElementById('duration');
   const videoWrapper = document.querySelector('.video-wrapper');
+  const youtubePlayer = document.getElementById('youtubePlayer');
   
-  if (!video || !playPauseButton || !progressBar) return;
+  if (!videoWrapper) return;
   
-  // 상품 카드 높이에 맞춰 동영상 wrapper 높이 조정 및 비디오를 보더에 딱 맞추기
+  // 상품 카드 높이에 맞춰 동영상 wrapper 높이 조정
   function adjustVideoHeight() {
-    if (videoWrapper && video) {
+    if (videoWrapper) {
       const productCards = document.querySelectorAll('.product-card');
       if (productCards.length > 0) {
         // 첫 번째 상품 카드의 높이를 기준으로 설정
@@ -712,14 +742,15 @@ document.addEventListener('DOMContentLoaded', function() {
           const videoContainerInner = videoWrapper.querySelector('.video-container-inner');
           if (videoContainerInner) {
             videoContainerInner.style.height = firstCardHeight + 'px';
-            videoContainerInner.style.width = '100%'; // 보더에 딱 맞추기 위해 전체 너비 사용
-            videoContainerInner.style.margin = '0'; // 패딩 제거
+            videoContainerInner.style.width = '100%';
+            videoContainerInner.style.margin = '0';
           }
           
-          // 비디오를 컨테이너에 맞춤 (보더에 딱 맞추기)
-          video.style.width = '100%';
-          video.style.height = '100%';
-          video.style.objectFit = 'cover'; // 비율 유지하면서 컨테이너를 꽉 채움
+          // 유튜브 iframe 높이 조정
+          if (youtubePlayer) {
+            youtubePlayer.style.width = '100%';
+            youtubePlayer.style.height = '100%';
+          }
         } else {
           // 높이가 아직 계산되지 않았으면 다시 시도
           setTimeout(adjustVideoHeight, 100);
@@ -734,6 +765,21 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   }
+  
+  // 유튜브 iframe 로드 후 자동 재생 시도 (브라우저 정책 준수)
+  youtubePlayer.addEventListener('load', function() {
+    // iframe이 로드된 후 사용자 상호작용이 있으면 자동 재생 시도
+    const tryAutoplay = function() {
+      const currentSrc = youtubePlayer.src;
+      if (!currentSrc.includes('autoplay=1')) {
+        const separator = currentSrc.includes('?') ? '&' : '?';
+        youtubePlayer.src = currentSrc + separator + 'autoplay=1';
+      }
+    };
+    
+    // 페이지 로드 후 약간의 지연을 두고 자동 재생 시도
+    setTimeout(tryAutoplay, 1000);
+  });
   
   // 상품 카드가 렌더링된 후 높이 조정
   // 이미지 로드 후 높이 조정
@@ -751,181 +797,6 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', function() {
     setTimeout(adjustVideoHeight, 100);
   });
-  
-  // 시간 포맷팅 함수 (초를 mm:ss 형식으로)
-  function formatTime(seconds) {
-    if (isNaN(seconds) || !isFinite(seconds)) return '0:00';
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return mins + ':' + (secs < 10 ? '0' : '') + secs;
-  }
-  
-  // 재생/일시정지 토글
-  function togglePlayPause() {
-    if (video.paused) {
-      video.play();
-      playPauseButton.classList.remove('paused');
-    } else {
-      video.pause();
-      playPauseButton.classList.add('paused');
-    }
-  }
-  
-  // 진행 바 업데이트
-  function updateProgress() {
-    if (video.duration) {
-      const percent = (video.currentTime / video.duration) * 100;
-      progressBarFill.style.width = percent + '%';
-      progressHandle.style.left = percent + '%';
-      currentTimeDisplay.textContent = formatTime(video.currentTime);
-    }
-  }
-  
-  // 진행 바 클릭으로 탐색
-  function seekTo(event) {
-    if (!video.duration) return;
-    const rect = progressBar.getBoundingClientRect();
-    const percent = (event.clientX - rect.left) / rect.width;
-    const newTime = percent * video.duration;
-    video.currentTime = Math.max(0, Math.min(newTime, video.duration));
-  }
-  
-  // 컨트롤 표시/숨김 관리
-  let controlsTimeout;
-  function showControls() {
-    videoWrapper.classList.add('show-controls');
-    clearTimeout(controlsTimeout);
-    controlsTimeout = setTimeout(function() {
-      if (!video.paused) {
-        videoWrapper.classList.remove('show-controls');
-      }
-    }, 3000); // 3초 후 자동 숨김 (재생 중일 때만)
-  }
-  
-  function hideControls() {
-    clearTimeout(controlsTimeout);
-    if (!video.paused) {
-      videoWrapper.classList.remove('show-controls');
-    }
-  }
-  
-  // 마우스 호버 이벤트 (PC)
-  let isMobile = window.innerWidth <= 768;
-  window.addEventListener('resize', function() {
-    isMobile = window.innerWidth <= 768;
-  });
-  
-  if (!isMobile) {
-    videoWrapper.addEventListener('mouseenter', showControls);
-    videoWrapper.addEventListener('mouseleave', hideControls);
-    videoWrapper.addEventListener('mousemove', function() {
-      if (!video.paused) {
-        showControls();
-      }
-    });
-  }
-  
-  // 터치 이벤트 (모바일)
-  let touchStartTime = 0;
-  videoWrapper.addEventListener('touchstart', function(e) {
-    touchStartTime = Date.now();
-    showControls();
-    // 터치가 컨트롤 바가 아닌 비디오 영역이면 재생/일시정지 토글
-    if (e.target === video || e.target === videoWrapper || e.target.closest('.video-container-inner')) {
-      const touch = e.touches[0];
-      const rect = videoWrapper.getBoundingClientRect();
-      const controlsRect = document.querySelector('.video-controls').getBoundingClientRect();
-      
-      // 하단 컨트롤 바 영역이 아니면 재생/일시정지
-      if (touch.clientY < controlsRect.top) {
-        togglePlayPause();
-      }
-    }
-  });
-  
-  videoWrapper.addEventListener('touchend', function() {
-    const touchDuration = Date.now() - touchStartTime;
-    if (touchDuration < 300) { // 짧은 터치 (탭)
-      // 이미 togglePlayPause가 touchstart에서 호출됨
-    }
-  });
-  
-  // 비디오 이벤트 리스너
-  video.addEventListener('loadedmetadata', function() {
-    durationDisplay.textContent = formatTime(video.duration);
-    updateProgress();
-  });
-  
-  video.addEventListener('timeupdate', updateProgress);
-  
-  video.addEventListener('play', function() {
-    playPauseButton.classList.remove('paused');
-    if (!isMobile) {
-      hideControls();
-    }
-  });
-  
-  video.addEventListener('pause', function() {
-    playPauseButton.classList.add('paused');
-    showControls(); // 일시정지 시 컨트롤 표시
-  });
-  
-  // 컨트롤 버튼 이벤트
-  playPauseButton.addEventListener('click', function(e) {
-    e.stopPropagation();
-    togglePlayPause();
-  });
-  
-  // 진행 바 이벤트
-  let isDragging = false;
-  progressBar.addEventListener('mousedown', function(e) {
-    isDragging = true;
-    seekTo(e);
-  });
-  
-  document.addEventListener('mousemove', function(e) {
-    if (isDragging) {
-      seekTo(e);
-    }
-  });
-  
-  document.addEventListener('mouseup', function() {
-    isDragging = false;
-  });
-  
-  // 터치로 진행 바 탐색 (모바일)
-  progressBar.addEventListener('touchstart', function(e) {
-    e.stopPropagation();
-    seekTo(e.touches[0]);
-  });
-  
-  progressBar.addEventListener('touchmove', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    seekTo(e.touches[0]);
-  });
-  
-  // 동영상 로드 시 자동 재생 시도
-  video.play().then(function() {
-    // 자동 재생 성공
-    playPauseButton.classList.remove('paused');
-  }).catch(function(error) {
-    // 자동 재생이 차단된 경우 (브라우저 정책)
-    console.log('동영상 자동 재생이 차단되었습니다:', error);
-    playPauseButton.classList.add('paused');
-    showControls(); // 재생되지 않으면 컨트롤 표시
-  });
-  
-  // 동영상 로드 오류 처리
-  video.addEventListener('error', function() {
-    console.log('동영상 파일을 로드할 수 없습니다.');
-  });
-  
-  // 초기 상태 설정
-  if (video.paused) {
-    playPauseButton.classList.add('paused');
-    showControls();
-  }
 });
 
 // 랜덤 상품으로 이동하는 함수
