@@ -264,11 +264,10 @@
     .video-wrapper iframe {
       position: absolute;
       top: 50%;
-      left: 0;
-      transform: translateY(-50%);
+      left: 50%;
+      transform: translate(-50%, -50%);
       border: none;
       background: transparent;
-      width: 100%;
     }
     
     /* LIVE ON AIR 배지 */
@@ -751,18 +750,19 @@ document.addEventListener('DOMContentLoaded', function() {
             videoContainerInner.style.margin = '0';
           }
           
-          // 유튜브 영상을 카드 너비 전체에 맞춤 (보더라인까지)
-          // 영상 비율: 9:16 = 0.5625
+          // 유튜브 영상 비율 계산 (9:16 세로형)
           const videoAspectRatio = 9 / 16; // 세로형
+          const containerAspectRatio = firstCardWidth / firstCardHeight;
           
-          // 너비를 카드 너비 전체로 설정하고, 높이는 비율에 맞춰 계산
-          youtubePlayer.style.width = firstCardWidth + 'px';
-          youtubePlayer.style.height = (firstCardWidth / videoAspectRatio) + 'px';
-          
-          // 높이가 카드 높이를 초과하면 높이에 맞춤
-          if (youtubePlayer.offsetHeight > firstCardHeight) {
+          // 컨테이너와 영상 비율 비교하여 최적 크기 계산
+          if (containerAspectRatio > videoAspectRatio) {
+            // 컨테이너가 더 넓으면 높이에 맞춤 (좌우 여백 생김)
             youtubePlayer.style.height = firstCardHeight + 'px';
             youtubePlayer.style.width = (firstCardHeight * videoAspectRatio) + 'px';
+          } else {
+            // 컨테이너가 더 좁으면 너비에 맞춤 (상하 여백 생김)
+            youtubePlayer.style.width = firstCardWidth + 'px';
+            youtubePlayer.style.height = (firstCardWidth / videoAspectRatio) + 'px';
           }
         } else {
           // 높이가 아직 계산되지 않았으면 다시 시도
