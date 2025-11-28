@@ -256,30 +256,18 @@
       height: 100%; /* 상품 카드 전체 높이에 맞춤 */
       background: transparent;
       overflow: hidden;
-      /* 보더에 딱 맞추기 위해 flex 제거 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
     .video-wrapper iframe {
-      width: 100%; /* 보더에 딱 맞추기 위해 전체 너비 사용 */
-      height: 100%; /* 컨테이너 높이에 맞춤 */
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       border: none;
       background: transparent;
-    }
-    
-    /* 유튜브 iframe의 검은 배경을 투명하게 보이게 하기 위한 오버레이 */
-    .video-container-inner::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: transparent;
-      pointer-events: none;
-      z-index: 1;
     }
     
     /* LIVE ON AIR 배지 */
@@ -742,28 +730,41 @@ document.addEventListener('DOMContentLoaded', function() {
   
   if (!videoWrapper) return;
   
-  // 상품 카드 높이에 맞춰 동영상 wrapper 높이 조정
+  // 상품 카드 높이에 맞춰 동영상 wrapper 높이 조정 및 영상 비율 계산
   function adjustVideoHeight() {
-    if (videoWrapper) {
+    if (videoWrapper && youtubePlayer) {
       const productCards = document.querySelectorAll('.product-card');
       if (productCards.length > 0) {
-        // 첫 번째 상품 카드의 높이를 기준으로 설정
+        // 첫 번째 상품 카드의 높이와 너비를 기준으로 설정
         const firstCardHeight = productCards[0].offsetHeight;
-        if (firstCardHeight > 0) {
+        const firstCardWidth = productCards[0].offsetWidth;
+        
+        if (firstCardHeight > 0 && firstCardWidth > 0) {
           videoWrapper.style.height = firstCardHeight + 'px';
           
           // 비디오 컨테이너 높이도 동일하게 설정
           const videoContainerInner = videoWrapper.querySelector('.video-container-inner');
           if (videoContainerInner) {
             videoContainerInner.style.height = firstCardHeight + 'px';
-            videoContainerInner.style.width = '100%';
-            videoContainerInner.style.margin = '0';
+            videoContainerInner.style.width = firstCardWidth + 'px';
+            videoContainerInner.style.margin = '0 auto';
           }
           
-          // 유튜브 iframe 높이 조정
-          if (youtubePlayer) {
-            youtubePlayer.style.width = '100%';
-            youtubePlayer.style.height = '100%';
+          // 유튜브 영상이 세로형(9:16)인 경우 비율 계산
+          // 영상 비율: 9:16 = 0.5625
+          const videoAspectRatio = 9 / 16; // 세로형
+          const containerAspectRatio = firstCardWidth / firstCardHeight;
+          
+          if (containerAspectRatio > videoAspectRatio) {
+            // 컨테이너가 더 넓으면 높이에 맞춤
+            const calculatedWidth = firstCardHeight * videoAspectRatio;
+            youtubePlayer.style.width = calculatedWidth + 'px';
+            youtubePlayer.style.height = firstCardHeight + 'px';
+          } else {
+            // 컨테이너가 더 좁으면 너비에 맞춤
+            const calculatedHeight = firstCardWidth / videoAspectRatio;
+            youtubePlayer.style.width = firstCardWidth + 'px';
+            youtubePlayer.style.height = calculatedHeight + 'px';
           }
         } else {
           // 높이가 아직 계산되지 않았으면 다시 시도
@@ -775,6 +776,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const videoContainerInner = videoWrapper.querySelector('.video-container-inner');
         if (videoContainerInner) {
           videoContainerInner.style.height = '500px';
+          videoContainerInner.style.width = '100%';
+        }
+        if (youtubePlayer) {
+          youtubePlayer.style.width = '100%';
+          youtubePlayer.style.height = '500px';
         }
       }
     }
