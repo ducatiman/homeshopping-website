@@ -1183,6 +1183,16 @@
     drawer.setAttribute('aria-hidden', 'false');
     drawerOverlay.setAttribute('aria-hidden', 'false');
     
+    // 카테고리 메뉴 자동 확장
+    const categoryToggle = drawer.querySelector('[data-submenu="category"]');
+    if (categoryToggle) {
+      const categoryMenuItem = categoryToggle.closest('.menu-item-expandable');
+      if (categoryMenuItem && !categoryMenuItem.classList.contains('expanded')) {
+        categoryMenuItem.classList.add('expanded');
+        categoryToggle.setAttribute('aria-expanded', 'true');
+      }
+    }
+    
     // 첫 번째 메뉴 항목에 포커스
     const firstMenuItem = drawer.querySelector('.menu-link');
     if (firstMenuItem) {
