@@ -447,6 +447,30 @@
       box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
     }
     
+    /* 비디오 카드 */
+    .video-card {
+      background: #ffffff;
+      border: 1px solid #e0ede1;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .video-card:hover {
+      border-color: #4caf50;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+    }
+    
+    .video-card video {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      background: #f8f8f8;
+      display: block;
+    }
+    
     .product-image {
       width: 100%;
       height: 280px;
@@ -1015,6 +1039,22 @@
       <h2 class="section-title">프리미엄 밀키트</h2>
       
       <div class="products-grid">
+        <!-- Shorts 비디오 1 -->
+        <div class="video-card">
+          <video autoplay loop muted playsinline>
+            <source src="./videos/shorts_1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        
+        <!-- Shorts 비디오 2 -->
+        <div class="video-card">
+          <video autoplay loop muted playsinline>
+            <source src="./videos/shorts_2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        
         <!-- 동영상 - 첫 번째로 배치 -->
         <div class="video-wrapper">
           <div class="video-container-inner">
