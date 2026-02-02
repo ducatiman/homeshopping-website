@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>청양식 밀키트 전문몰</title>
+  <title>정산농협 쇼핑몰</title>
   <style>
     * { 
       margin: 0; 
@@ -399,6 +399,28 @@
       font-weight: 400;
     }
     
+    /* 새해 인사 배너 */
+    .newyear-banner {
+      background: #fefdfb;
+      padding: 40px 0;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    
+    .newyear-image {
+      width: 100%;
+      max-width: 1200px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      object-fit: contain;
+    }
+    
+    @media (max-width: 768px) {
+      .newyear-banner {
+        padding: 24px 0;
+      }
+    }
+    
     .products-section {
       padding: 80px 0;
     }
@@ -455,6 +477,8 @@
       transition: all 0.3s ease;
       cursor: pointer;
       position: relative;
+      display: flex;
+      flex-direction: column;
     }
     
     .video-card:hover {
@@ -465,7 +489,7 @@
     
     .video-card video {
       width: 100%;
-      height: 280px;
+      height: 100%;
       object-fit: cover;
       background: #f8f8f8;
       display: block;
@@ -941,7 +965,7 @@
     <div class="drawer-header">
       <div class="drawer-logo">
         <img src="./images/ic_farm.gif" alt="정산농협">
-        <h2>청양식 밀키트 전문몰</h2>
+        <h2>정산농협 쇼핑몰</h2>
       </div>
       <button class="drawer-close" id="drawerClose" aria-label="메뉴 닫기">
         <span class="close-icon">×</span>
@@ -1009,7 +1033,7 @@
 
     <!-- 드로어 푸터 -->
     <div class="drawer-footer">
-      <p class="drawer-footer-text">청양식 밀키트 전문몰</p>
+      <p class="drawer-footer-text">정산농협 쇼핑몰</p>
       <p class="drawer-footer-text">국산 재료로 만든 프리미엄 밀키트</p>
     </div>
   </nav>
@@ -1027,10 +1051,17 @@
       <div class="header-content">
         <div class="header-logo-container">
           <img src="./images/ic_farm.gif" alt="정산농협" class="header-logo-img">
-          <h1>청양식 밀키트 전문몰</h1>
+          <h1>정산농협 쇼핑몰</h1>
         </div>
         <p>국산 재료로 만든 프리미엄 밀키트를 만나보세요</p>
       </div>
+    </div>
+  </div>
+
+  <!-- 새해 인사 이미지 -->
+  <div class="newyear-banner">
+    <div class="container">
+      <img src="./images/img_happy_newyear.png" alt="새해 인사" class="newyear-image">
     </div>
   </div>
 
@@ -1317,6 +1348,48 @@
     });
   });
 })();
+
+// 비디오 카드 높이 조정 (상품 카드와 동일하게)
+document.addEventListener('DOMContentLoaded', function() {
+  function adjustVideoCardHeight() {
+    const videoCards = document.querySelectorAll('.video-card');
+    const productCards = document.querySelectorAll('.product-card');
+    
+    if (videoCards.length > 0 && productCards.length > 0) {
+      // 첫 번째 상품 카드의 높이를 기준으로 설정
+      const firstCardHeight = productCards[0].offsetHeight;
+      
+      if (firstCardHeight > 0) {
+        videoCards.forEach(videoCard => {
+          videoCard.style.height = firstCardHeight + 'px';
+          const video = videoCard.querySelector('video');
+          if (video) {
+            video.style.height = firstCardHeight + 'px';
+          }
+        });
+      } else {
+        // 높이가 아직 계산되지 않았으면 다시 시도
+        setTimeout(adjustVideoCardHeight, 100);
+      }
+    }
+  }
+  
+  // 페이지 로드 후 높이 조정
+  window.addEventListener('load', function() {
+    setTimeout(adjustVideoCardHeight, 200);
+  });
+  // 즉시 한 번 실행
+  adjustVideoCardHeight();
+  // 추가로 여러 번 시도 (이미지 로드 대기)
+  setTimeout(adjustVideoCardHeight, 100);
+  setTimeout(adjustVideoCardHeight, 300);
+  setTimeout(adjustVideoCardHeight, 500);
+  
+  // 리사이즈 시에도 높이 재조정
+  window.addEventListener('resize', function() {
+    setTimeout(adjustVideoCardHeight, 100);
+  });
+});
 
 // 유튜브 동영상 높이 조정
 document.addEventListener('DOMContentLoaded', function() {

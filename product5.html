@@ -500,6 +500,7 @@
       color: #333333;
       margin-bottom: 24px;
       line-height: 1.5;
+      white-space: pre-line;
     }
     
     .modal-button {
@@ -746,7 +747,7 @@ function closeModal() {
 function addToCart(productId) {
   const quantity = document.getElementById(`quantity${productId.slice(-1)}`).value;
   const productName = productNames[productId] || productId;
-  showModal(`${productName} ${quantity}개가 장바구니에 추가되었습니다!`);
+  showModal(`${productName} ${quantity}개가 장바구니에 추가되었습니다!\n추후 결제시스템 구축예정입니다.`);
 }
 
 // 바로구매 기능
